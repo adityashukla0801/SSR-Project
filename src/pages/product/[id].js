@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Head from "next/head";
 import "../../app/globals.css";
-import ClipLoader from "react-spinners/ClipLoader";
 
 export async function getServerSideProps({ params }) {
   const productId = parseInt(params.id);
@@ -52,16 +51,9 @@ export async function getServerSideProps({ params }) {
 }
 
 const ProductPage = ({ product, nextProduct, prevProduct, notFound }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleNavigation = async (id) => {
-    setIsLoading(true);
     window.location.assign(`/product/${id}`);
   };
-
-  useEffect(() => {
-    setIsLoading(false); // Reset loading state on component mount
-  }, [product]);
 
   if (notFound) {
     return (
@@ -125,14 +117,6 @@ const ProductPage = ({ product, nextProduct, prevProduct, notFound }) => {
             >
               NEXT
             </button>
-            {isLoading && (
-              <ClipLoader
-                isLoading={isLoading}
-                size={20}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
-            )}
           </div>
         </div>
       </div>
