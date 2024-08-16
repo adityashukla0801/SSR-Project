@@ -1,10 +1,12 @@
-import ProductPage from "@/pages/product/[id]/page";
+"use client";
+
+import ProductPage from "@/pages/product/[id]";
 import "./globals.css";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <>
-      <ProductPage />
-    </>
-  );
+  useEffect(() => {
+    window.location.assign(`/product/1`);
+  });
+  return <></>;
 }
